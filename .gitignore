@@ -1,0 +1,10 @@
+.devcontainer/
+.vscode/
+doc/
+examples/
+docker-compose.yml
+Dockerfile
+Makefile
+*.o
+src/test/
+/*cpp
