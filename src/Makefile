@@ -15,14 +15,14 @@ CXXFLAGS      = -Wall \
                 -D_LINUX \
                 -DMKL_ILP64 \
                 -D_USE_OMP \
-                -trace \
-                -profile=vtfs \
                 -I${INTEL_DIR}/compiler/2022.1.0/linux/compiler/include \
                 -I${INTEL_DIR}/mkl/2022.1.0/include \
-                -I${INTEL_DIR}/vtune/2022.2.0/include
+                -I${INTEL_DIR}/vtune/2022.2.0/include \
+                -I/usr/lib/x86_64-linux-gnu
 DEST          = ./
 LDFLAGS       = -L${INTEL_DIR}/compiler/2022.1.2/linux/compiler/lib/intel64 \
-                -L${INTEL_DIR}/mkl/2022.1.0/lib/intel64
+                -L${INTEL_DIR}/mkl/2022.1.0/lib/intel64 \
+                -L${INTEL_DIR}/mpi/2021.6.0/libfabric/lib
 LIBS          = -L${INTEL_DIR}/mkl/lib/intel64 -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl
 OBJS          = AnalysisControl.o \
                 ComplexSparseMatrix.o \

@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+    femtic-dev:
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        image: femtic-dev
+        tty: true
+        stdin_open: true
+        command: /bin/bash
+        volumes:
+            - .:/usr:rw
