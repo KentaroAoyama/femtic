@@ -1,0 +1,46 @@
+intel/oneapiのイメージをpull
+	docker pull intel/oneapi
+
+コンテナ起動
+	初回：docker run --volume :/home/:rw -it --name=intel-oneapi  intel/oneapi
+	二回目以降：docker exec -it intel-oneapi bash
+
+コンテナ作成 & コンテナ内でg++をinstall (TOOD: Dockerfileでg++のinstallまで完了させる or shell書く)
+	apt-get update
+ 	apt-get install -y sudo
+	sudo apt update
+	sudo apt-get install g++
+	sudo apt-get install intel-basekit
+	sudo apt-get install intel-hpckit
+	sudo apt-get install gfortran
+	sudo apt-get install libomp-dev
+	sudo apt-get install gcc-multilib
+	sudo apt-get -y install openmpi-bin
+	sudo apt-get install libblacs-mpi-dev
+消去：
+-qopt-report=4 \
+-DNDEBUG \
+-g \
+-Wall \
+-Wextra \
+
+ docker compose run femtic-dev bash
+
+原因　対策
+mklのライブラリのpathに問題がありそう？
+warning出してみる
+D_LINUXの中身を確認してubuntuでいいか確認する
+
+環境変数設定コマンド
+source /opt/intel/oneapi/setvars.sh  --force
+
+デバッグ方法
+1. gdb（intelに限らず標準的に使われる）
+	https://www.open-mpi.org/faq/?category=debugging
+2. intelのデバッグ用ツール使う
+	-trace
+	-profile=vtfs
+
+その後やったこと
+windowsのbashでsudo sysctl vm.overcommit_memory=1
+sudo apt-get install libglu1
