@@ -4,7 +4,7 @@ intel/oneapiのイメージをpull
 コンテナ起動
 	初回：docker run --volume :/home/:rw -it --name=intel-oneapi  intel/oneapi
 	二回目以降：docker exec -it intel-oneapi bash
-
+	(debug用)：docker run --volume $PWD:/home/:rw -it --cap-add=SYS_PTRACE --security-opt="seccomp=unconfined" --name=femtic-dev femtic-dev
 コンテナ作成 & コンテナ内でg++をinstall (TOOD: Dockerfileでg++のinstallまで完了させる or shell書く)
 	apt-get update
  	apt-get install -y sudo
